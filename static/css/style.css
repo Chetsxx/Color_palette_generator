@@ -16,8 +16,7 @@ h1 {
 .container {
     justify-content: center;
     display: flex;
-    align-items: center;
-    white-space: pre-wrap;
+    white-space: pre-line;
 }
 
 .colors_container {

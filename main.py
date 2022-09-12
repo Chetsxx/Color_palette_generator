@@ -1,8 +1,8 @@
-from flask import render_template, request, Flask, flash, redirect, url_for, session
+from flask import render_template, request, Flask, flash, redirect, session
 from werkzeug.utils import secure_filename
-from flask import send_from_directory
 from colorthief import ColorThief
 import os
+
 
 
 

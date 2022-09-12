@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 app.secret_key = "smell"
 
-app.config['UPLOAD_FOLDER'] = "static/images/display_image"
+app.config['UPLOAD_FOLDER'] = "static/images/"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def allowed_file(filename):

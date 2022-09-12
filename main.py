@@ -25,7 +25,7 @@ def upload():
         if image and allowed_file(image.filename):
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            file_path = f"static/images/display_image/{image.filename}"
+            file_path = f"static/images/{image.filename}"
             color_thief = ColorThief(file_path)
             top_colors = color_thief.get_palette(color_count=11)
             number = 11

@@ -1,4 +1,4 @@
-from flask import render_template, request, Flask, flash, redirect, url_for
+from flask import render_template, request, Flask, flash, redirect, url_for, session
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
 from colorthief import ColorThief
@@ -31,12 +31,24 @@ def upload():
             file_path = f"static/images/display_image/{image.filename}"
             color_thief = ColorThief(file_path)
             top_colors = color_thief.get_palette(color_count=11)
-            return render_template("image.html", path=file_path, colors=top_colors)
+            number = 11
+            session["file_path"] = file_path
+            return render_template("image.html", path=file_path, colors=top_colors, num=number)
         else:
             flash('Allowed image types are - png, jpg, jpeg')
             return redirect(request.url)
     else:
         return render_template("index.html")
+
+@app.route('/more_colors_', methods=['GET', 'POST'])
+def more_colors():
+    number = int(request.form['num_results']) + 1
+    file_path = session.get("file_path")
+    color_thief = ColorThief(file_path)
+    top_colors = color_thief.get_palette(color_count=number)
+    print(top_colors)
+    return render_template("image.html", path=file_path, colors=top_colors, num=number)
+
 
 
 
